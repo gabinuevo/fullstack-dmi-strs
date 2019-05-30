@@ -5,15 +5,31 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const ExpressError = require("./expressError")
+const ExpressError = require("./expressError");
+const StringApi = require("./StringApi");
 
-app.get('/', function (req, res, next) {
+/** Get all strings. 
+ * returns => [{id, string}, {id, string}, ...]
+ */
+app.get('/', async function (req, res, next) {
+  try {
+    const result = await StringApi.getAll();
+    return res.send({ result });
+  } catch (err) {
+    return next(err);
+  }
+});
+
+
+/** Posts new string to db
+ * returns => {result: {id, string}}
+ */
+app.post('/', async function (req, res, next) {
   try {
     const { input } = req.body;
-    return res.send({
-      message: "Success!"
-    });
-  } catch (e) {
+    const result = await StringApi.addString(input);
+    return res.send({ result });
+  } catch (err) {
     return next(err);
   }
 });
