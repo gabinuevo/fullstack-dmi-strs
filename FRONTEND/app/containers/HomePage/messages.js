@@ -10,12 +10,12 @@ export const scope = 'boilerplate.containers.HomePage';
 export default defineMessages({
   startProjectHeader: {
     id: `${scope}.start_project.header`,
-    defaultMessage: 'Connect with people all over the world',
+    defaultMessage: 'A collection of thoughts and messages from people like you',
   },
   startProjectMessage: {
     id: `${scope}.start_project.message`,
     defaultMessage:
-      'A collection of thoughts and messages from users from anywhere and everywhere just like you.',
+      '-- a time capsule for the 21st century',
   },
   trymeHeader: {
     id: `${scope}.tryme.header`,
@@ -23,7 +23,7 @@ export default defineMessages({
   },
   trymeMessage: {
     id: `${scope}.tryme.message`,
-    defaultMessage: 'Show Github repositories by',
+    defaultMessage: 'Input: ',
   },
   trymeAtPrefix: {
     id: `${scope}.tryme.atPrefix`,
