@@ -26,14 +26,12 @@ import H1 from 'components/H1';
 import messages from './messages';
 import List from './List';
 import ListItem from './ListItem';
-import ListItemTitle from './ListItemTitle';
 import reducer from './reducer';
 import saga from './saga';
 
 const key = 'featurePage';
 
 export function FeaturePage({
-  loading,
   error,
   sendGetReq,
   strings
@@ -51,8 +49,8 @@ export function FeaturePage({
   let stringList = !strings
     ? null
     : strings.map((obj) =>
-      <ListItem key={ `${obj.id}` }>
-        { obj.string } 
+      <ListItem key={`${obj.id}`}>
+        {obj.string}
       </ListItem>);
   return (
     <div>
@@ -66,7 +64,9 @@ export function FeaturePage({
       <H1>
         <FormattedMessage {...messages.header} />
       </H1>
-      {!error ? stringList : "Something has gone wrong"}
+      <List>
+        {!error ? stringList : "Something has gone wrong"}
+      </List>
     </div>
   );
 }
@@ -77,8 +77,6 @@ FeaturePage.propTypes = {
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   strings: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   sendGetReq: PropTypes.func,
-
-  onChangeInput: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -86,13 +84,6 @@ const mapStateToProps = createStructuredSelector({
   loading: makeSelectLoading(),
   error: makeSelectError()
 });
-
-// const mapStateToProps = (state) => {
-//   return {
-//     strings: makeSelectStrings(state)
-//   }
-// }
-
 
 export function mapDispatchToProps(dispatch) {
   return {
