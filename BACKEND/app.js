@@ -23,6 +23,7 @@ app.use(cors({
 app.get('/', async function (req, res, next) {
   try {
     const result = await StringApi.getAll();
+    console.log("BACKEND PINGED")
     return res.send({ result });
   } catch (err) {
     return next(err);

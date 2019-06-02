@@ -14,7 +14,6 @@ import request from 'utils/request';
 export function* getStrings() {
   // Select username from store
   const requestURL = `http://localhost:3001`;
-  console.log("I AM RUNNING IN FEATUREPAGE")
   try {
     // Call our request helper (see 'utils/request')
     const strings = yield call(request, requestURL);

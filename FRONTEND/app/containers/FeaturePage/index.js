@@ -42,7 +42,11 @@ export function FeaturePage({
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
-  useEffect(() => sendGetReq(), []);
+  useEffect(() => {
+    if (strings.length === 0) {
+      sendGetReq()
+    }
+  }, []);
 
   let stringList = !strings
     ? null
@@ -50,7 +54,6 @@ export function FeaturePage({
       <ListItem key={ `${obj.id}` }>
         { obj.string } 
       </ListItem>);
-  debugger;
   return (
     <div>
       <Helmet>
@@ -63,7 +66,7 @@ export function FeaturePage({
       <H1>
         <FormattedMessage {...messages.header} />
       </H1>
-      {stringList}
+      {!error ? stringList : "Something has gone wrong"}
     </div>
   );
 }
