@@ -41,20 +41,16 @@ export function FeaturePage({
 
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
-  
-  useEffect(() => {
-    strings = sendGetReq()
-  }, []);
+
+  useEffect(() => sendGetReq(), []);
 
   let stringList = !strings
     ? null
     : strings.map((obj) =>
-      <ListItem>
-        <p>
-          <FormattedMessage {...obj.string} />
-        </p>
+      <ListItem key={ `${obj.id}` }>
+        { obj.string } 
       </ListItem>);
-
+  debugger;
   return (
     <div>
       <Helmet>
@@ -67,7 +63,7 @@ export function FeaturePage({
       <H1>
         <FormattedMessage {...messages.header} />
       </H1>
-          { stringList }
+      {stringList}
     </div>
   );
 }
@@ -85,8 +81,15 @@ FeaturePage.propTypes = {
 const mapStateToProps = createStructuredSelector({
   strings: makeSelectStrings(),
   loading: makeSelectLoading(),
-  error: makeSelectError(),
+  error: makeSelectError()
 });
+
+// const mapStateToProps = (state) => {
+//   return {
+//     strings: makeSelectStrings(state)
+//   }
+// }
+
 
 export function mapDispatchToProps(dispatch) {
   return {

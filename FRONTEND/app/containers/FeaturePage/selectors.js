@@ -1,27 +1,27 @@
 /**
- * The global state selectors
+ * The Feature Page state selectors
  */
 
 import { createSelector } from 'reselect';
 import { initialState } from './reducer';
 
-const selectGlobal = state => state.global || initialState;
+const selectMessages = state => state.featurePage || initialState;
 
 const makeSelectStrings = () =>
   createSelector(
-    selectGlobal,
-    globalState => globalState.featurePage,
+    selectMessages,
+    globalState => globalState.strings,
   );
 
 const makeSelectLoading = () =>
   createSelector(
-    selectGlobal,
+    selectMessages,
     globalState => globalState.loading,
   );
 
 const makeSelectError = () =>
   createSelector(
-    selectGlobal,
+    selectMessages,
     globalState => globalState.error,
   );
 

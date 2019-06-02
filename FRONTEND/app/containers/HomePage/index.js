@@ -85,7 +85,6 @@ export function HomePage({
               />
             </label>
           </Form>
-          {/* <ReposList {...stringsListProps} /> */}
         </Section>
       </div>
     </article>
