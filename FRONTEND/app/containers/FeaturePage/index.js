@@ -3,75 +3,106 @@
  *
  * List all the features
  */
-import React from 'react';
+import React, { useEffect, memo } from 'react';
+import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { createStructuredSelector } from 'reselect';
+
+import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectSaga } from 'utils/injectSaga';
+
+
+import {
+  makeSelectStrings,
+  makeSelectLoading,
+  makeSelectError,
+} from './selectors';
+import { loadStrings } from './actions';
 
 import H1 from 'components/H1';
 import messages from './messages';
 import List from './List';
 import ListItem from './ListItem';
 import ListItemTitle from './ListItemTitle';
+import reducer from './reducer';
+import saga from './saga';
 
-export default function FeaturePage() {
+const key = 'featurePage';
+
+export function FeaturePage({
+  loading,
+  error,
+  sendGetReq,
+  strings
+}) {
+
+  useInjectReducer({ key, reducer });
+  useInjectSaga({ key, saga });
+  
+  useEffect(() => {
+    strings = sendGetReq()
+  }, []);
+
+  let stringList = !strings
+    ? null
+    : strings.map((obj) =>
+      <ListItem>
+        <p>
+          <FormattedMessage {...obj.string} />
+        </p>
+      </ListItem>);
+
   return (
     <div>
       <Helmet>
-        <title>Feature Page</title>
+        <title>Current messages</title>
         <meta
           name="description"
-          content="Feature page of React.js Boilerplate application"
+          content="Existing messages in DMI Connect"
         />
       </Helmet>
       <H1>
         <FormattedMessage {...messages.header} />
       </H1>
-      <List>
-        <ListItem>
-          <ListItemTitle>
-            <FormattedMessage {...messages.scaffoldingHeader} />
-          </ListItemTitle>
-          <p>
-            <FormattedMessage {...messages.scaffoldingMessage} />
-          </p>
-        </ListItem>
-
-        <ListItem>
-          <ListItemTitle>
-            <FormattedMessage {...messages.feedbackHeader} />
-          </ListItemTitle>
-          <p>
-            <FormattedMessage {...messages.feedbackMessage} />
-          </p>
-        </ListItem>
-
-        <ListItem>
-          <ListItemTitle>
-            <FormattedMessage {...messages.routingHeader} />
-          </ListItemTitle>
-          <p>
-            <FormattedMessage {...messages.routingMessage} />
-          </p>
-        </ListItem>
-
-        <ListItem>
-          <ListItemTitle>
-            <FormattedMessage {...messages.networkHeader} />
-          </ListItemTitle>
-          <p>
-            <FormattedMessage {...messages.networkMessage} />
-          </p>
-        </ListItem>
-
-        <ListItem>
-          <ListItemTitle>
-            <FormattedMessage {...messages.intlHeader} />
-          </ListItemTitle>
-          <p>
-            <FormattedMessage {...messages.intlMessage} />
-          </p>
-        </ListItem>
-      </List>
+          { stringList }
     </div>
   );
 }
+
+
+FeaturePage.propTypes = {
+  loading: PropTypes.bool,
+  error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  strings: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  sendGetReq: PropTypes.func,
+
+  onChangeInput: PropTypes.func,
+};
+
+const mapStateToProps = createStructuredSelector({
+  strings: makeSelectStrings(),
+  loading: makeSelectLoading(),
+  error: makeSelectError(),
+});
+
+export function mapDispatchToProps(dispatch) {
+  return {
+    sendGetReq: evt => {
+      if (evt !== undefined && evt.preventDefault) evt.preventDefault();
+      dispatch(loadStrings());
+    },
+  };
+}
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
+
+export default compose(
+  withConnect,
+  memo,
+)(FeaturePage);

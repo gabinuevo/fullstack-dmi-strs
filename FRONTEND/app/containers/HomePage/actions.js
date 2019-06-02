@@ -30,3 +30,10 @@ export function changeInput(input) {
     input,
   };
 }
+
+export function getStrings() {
+  return {
+    type: CHANGE_INPUT,
+    input,
+  };
+}

@@ -3,7 +3,6 @@
  * App
  *
  * This component is the skeleton around the actual pages, and should only
- * contain code that should be seen on all pages. (e.g. navigation bar)
  */
 
 import React from 'react';
@@ -35,7 +34,7 @@ export default function App() {
         titleTemplate="%s - React.js Boilerplate"
         defaultTitle="React.js Boilerplate"
       >
-        <meta name="description" content="A React.js Boilerplate application" />
+        <meta name="description" content="Built with  React.js Boilerplate" />
       </Helmet>
       <Header />
       <Switch>

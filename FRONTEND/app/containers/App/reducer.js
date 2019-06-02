@@ -8,7 +8,7 @@
  */
 
 import produce from 'immer';
-import { LOAD_STRINGS_SUCCESS, LOAD_STRINGS, LOAD_STRINGS_ERROR } from './constants';
+// import { LOAD_STRINGS_SUCCESS, LOAD_STRINGS, LOAD_STRINGS_ERROR } from './constants';
 
 // The initial state of the App
 export const initialState = {
@@ -22,22 +22,22 @@ export const initialState = {
 const appReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
-      case LOAD_STRINGS:
-        draft.loading = true;
-        draft.error = false;
-        draft.strings = action.result;
-        break;
+      // case LOAD_STRINGS:
+      //   draft.loading = true;
+      //   draft.error = false;
+      //   draft.strings = action.result;
+      //   break;
 
-      case LOAD_STRINGS_SUCCESS:
-        draft.strings = action.repos;
-        draft.loading = false;
-        draft.strings = action.result;
-        break;
+      // case LOAD_STRINGS_SUCCESS:
+      //   draft.strings = action.repos;
+      //   draft.loading = false;
+      //   draft.strings = action.result;
+      //   break;
 
-      case LOAD_STRINGS_ERROR:
-        draft.error = action.error;
-        draft.loading = false;
-        break;
+      // case LOAD_STRINGS_ERROR:
+      //   draft.error = action.error;
+      //   draft.loading = false;
+      //   break;
     }
   });
 

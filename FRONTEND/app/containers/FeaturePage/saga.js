@@ -3,11 +3,10 @@
  */
 
 import { call, put, select, takeLatest } from 'redux-saga/effects';
-const PLACEHOLDER_TYPE = 'PLACEHOLDER_TYPE'
-// import { stringsLoaded, stringLoadingError } from './actions';
+import { LOAD_STRINGS } from './constants';
+import { stringsLoaded, stringLoadingError } from './actions';
 
 import request from 'utils/request';
-// import { makeSelectUsername } from 'containers/HomePage/selectors';
 
 /**
  * Database strings request/response handler
@@ -15,13 +14,14 @@ import request from 'utils/request';
 export function* getStrings() {
   // Select username from store
   const requestURL = `http://localhost:3001`;
-  // try {
-  //   // Call our request helper (see 'utils/request')
-  //   const strings = yield call(request, requestURL);
-  //   yield put(stringsLoaded(strings));
-  // } catch (err) {
-  //   yield put(stringLoadingError(err));
-  // }
+  console.log("I AM RUNNING IN FEATUREPAGE")
+  try {
+    // Call our request helper (see 'utils/request')
+    const strings = yield call(request, requestURL);
+    yield put(stringsLoaded(strings));
+  } catch (err) {
+    yield put(stringLoadingError(err));
+  }
 }
 
 /**
@@ -32,5 +32,5 @@ export default function* stringData() {
   // By using `takeLatest` only the result of the latest API call is applied.
   // It returns task descriptor (just like fork) so we can continue execution
   // It will be cancelled automatically on component unmount
-  yield takeLatest(PLACEHOLDER_TYPE, getStrings);
+  yield takeLatest(LOAD_STRINGS, getStrings);
 }

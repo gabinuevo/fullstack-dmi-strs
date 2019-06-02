@@ -8,6 +8,15 @@ app.use(express.urlencoded({ extended: true }));
 const ExpressError = require("./expressError");
 const StringApi = require("./StringApi");
 
+const cors = require('cors');
+
+//app.use(cors());
+
+app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true
+}));
+
 /** Get all strings. 
  * returns => [{id, string}, {id, string}, ...]
  */

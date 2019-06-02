@@ -12,7 +12,7 @@ import { CHANGE_INPUT } from './constants';
 
 // The initial state of the App
 export const initialState = {
-  input: '',
+  input: ''
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -20,7 +20,7 @@ const homeReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
       case CHANGE_INPUT:
-        draft.input = action.input.replace(/@/gi, '');
+        draft.input = action.input;
         break;
     }
   });
