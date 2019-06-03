@@ -3,10 +3,14 @@
  */
 
 import produce from 'immer';
-import { LOAD_STRINGS_SUCCESS, LOAD_STRINGS, LOAD_STRINGS_ERROR } from './constants';
+import {
+  LOAD_STRINGS_SUCCESS,
+  LOAD_STRINGS,
+  LOAD_STRINGS_ERROR,
+} from './constants';
 
 export const initialState = {
-  strings: []
+  strings: [],
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -29,5 +33,3 @@ const strPageReducer = (state = initialState, action) =>
   });
 
 export default strPageReducer;
-
-

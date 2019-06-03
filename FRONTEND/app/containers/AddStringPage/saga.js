@@ -1,9 +1,8 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { ADD_STRING } from './constants';
-import { sentString, sentStringErr } from './actions';
-
 import request from 'utils/request';
 
+import { ADD_STRING } from './constants';
+import { sentString, sentStringErr } from './actions';
 
 /**
  * request/response handler for adding a string to db

@@ -12,8 +12,6 @@ function Footer() {
         <FormattedMessage {...messages.licenseMessage} />
       </section>
       <section>
-      </section>
-      <section>
         <FormattedMessage
           {...messages.authorMessage}
           values={{

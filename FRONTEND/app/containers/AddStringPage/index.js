@@ -14,24 +14,17 @@ import { createStructuredSelector } from 'reselect';
 
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
-
-
-import {
-  makeSelectLoading,
-  makeSelectError,
-  makeSelectMsg,
-} from './selectors';
-import { sendString, removeStrMsg } from './actions';
-
 import H2 from 'components/H2';
 import Button from 'components/Button';
+
+import { makeSelectLoading, makeSelectError, makeSelectMsg } from './selectors';
+import { changeInput, sendString, removeStrMsg } from './actions';
 import ErrorMessage from './ErrorMessage';
 import SuccessMessage from './SuccessMessage';
 import Form from './Form';
 import Input from './Input';
 import Section from './Section';
 import messages from './messages';
-import { changeInput } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 
@@ -53,17 +46,14 @@ export function AddStringPage({
   }, []);
 
   if (message) {
-    window.setTimeout(() => removeMessage(), 5000 )
+    window.setTimeout(() => removeMessage(), 5000);
   }
 
   return (
     <article>
       <Helmet>
         <title>Add a Message</title>
-        <meta
-          name="description"
-          content="Built with React.js Boilerplate"
-        />
+        <meta name="description" content="Built with React.js Boilerplate" />
       </Helmet>
       <div>
         <Section>
@@ -71,9 +61,11 @@ export function AddStringPage({
             <FormattedMessage {...messages.trymeHeader} />
           </H2>
           <p>
-            {message && <SuccessMessage>
-              <FormattedMessage {...messages.successMessage} />
-            </SuccessMessage>}
+            {message && (
+              <SuccessMessage>
+                <FormattedMessage {...messages.successMessage} />
+              </SuccessMessage>
+            )}
           </p>
           <Form onSubmit={onSubmitForm}>
             <label htmlFor="input">
@@ -86,12 +78,14 @@ export function AddStringPage({
                 onChange={onChangeInput}
               />
             </label>
-              <Button handleRoute={onSubmitForm}>Submit Message</Button>
+            <Button handleRoute={onSubmitForm}>Submit Message</Button>
           </Form>
           <p>
-            {error && <ErrorMessage>
-                        <FormattedMessage {...messages.errorMessage} />
-                      </ErrorMessage>}
+            {error && (
+              <ErrorMessage>
+                <FormattedMessage {...messages.errorMessage} />
+              </ErrorMessage>
+            )}
           </p>
         </Section>
       </div>
@@ -104,6 +98,9 @@ AddStringPage.propTypes = {
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   onSubmitForm: PropTypes.func,
   onChangeInput: PropTypes.func,
+  removeMessage: PropTypes.func,
+  message: PropTypes.string,
+  input: PropTypes.string,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -117,8 +114,8 @@ export function mapDispatchToProps(dispatch) {
     onChangeInput: evt => dispatch(changeInput(evt.target.value)),
     onSubmitForm: evt => {
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-      dispatch(sendString(document.getElementById("string-input").value));
-      document.getElementById("string-input").value = '';
+      dispatch(sendString(document.getElementById('string-input').value));
+      document.getElementById('string-input').value = '';
     },
     removeMessage: () => dispatch(removeStrMsg()),
   };

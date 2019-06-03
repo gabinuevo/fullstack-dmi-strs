@@ -2,7 +2,11 @@
  *  StringsPage Actions
  */
 
-import { LOAD_STRINGS, LOAD_STRINGS_SUCCESS, LOAD_STRINGS_ERROR } from './constants';
+import {
+  LOAD_STRINGS,
+  LOAD_STRINGS_SUCCESS,
+  LOAD_STRINGS_ERROR,
+} from './constants';
 
 /**
  * Loads the strings, starts the request saga
@@ -25,7 +29,7 @@ export function loadStrings() {
 export function stringsLoaded(strings) {
   return {
     type: LOAD_STRINGS_SUCCESS,
-    strings
+    strings,
   };
 }
 

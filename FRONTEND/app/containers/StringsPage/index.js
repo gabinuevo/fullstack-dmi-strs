@@ -13,7 +13,8 @@ import { createStructuredSelector } from 'reselect';
 
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
-
+import H1 from 'components/H1';
+import Button from 'components/Button';
 
 import {
   makeSelectStrings,
@@ -22,8 +23,6 @@ import {
 } from './selectors';
 import { loadStrings } from './actions';
 
-import H1 from 'components/H1';
-import Button from 'components/Button';
 import messages from './messages';
 import CenteredSection from './CenteredSection';
 import List from './List';
@@ -33,33 +32,22 @@ import saga from './saga';
 
 const key = 'stringsPage';
 
-export function StringsPage({
-  error,
-  sendGetReq,
-  strings
-}) {
-
+export function StringsPage({ error, sendGetReq, strings }) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
   useEffect(() => {
-    if (strings.length === 0) sendGetReq()
+    if (strings.length === 0) sendGetReq();
   }, []);
 
-  let stringList = !strings
+  const stringList = !strings
     ? null
-    : strings.map((obj) =>
-      <ListItem key={`${obj.id}`}>
-        {obj.string}
-      </ListItem>);
+    : strings.map(obj => <ListItem key={`${obj.id}`}>{obj.string}</ListItem>);
   return (
     <div>
       <Helmet>
         <title>Current messages</title>
-        <meta
-          name="description"
-          content="Existing messages in DMI Connect"
-        />
+        <meta name="description" content="Existing messages in DMI Connect" />
       </Helmet>
       <CenteredSection>
         <H1>
@@ -73,13 +61,10 @@ export function StringsPage({
       <H1>
         <FormattedMessage {...messages.header} />
       </H1>
-      <List>
-        {!error ? stringList : "Something has gone wrong"}
-      </List>
+      <List> {!error ? stringList : 'Something has gone wrong'} </List>
     </div>
   );
 }
-
 
 StringsPage.propTypes = {
   loading: PropTypes.bool,
@@ -91,7 +76,7 @@ StringsPage.propTypes = {
 const mapStateToProps = createStructuredSelector({
   strings: makeSelectStrings(),
   loading: makeSelectLoading(),
-  error: makeSelectError()
+  error: makeSelectError(),
 });
 
 export function mapDispatchToProps(dispatch) {

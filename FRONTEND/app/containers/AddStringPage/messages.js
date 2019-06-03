@@ -10,7 +10,7 @@ export const scope = 'boilerplate.containers.addStringPage';
 export default defineMessages({
   trymeHeader: {
     id: `${scope}.tryme.header`,
-    defaultMessage: 'Try me!',
+    defaultMessage: 'Add a message to the database!',
   },
   trymeMessage: {
     id: `${scope}.tryme.message`,

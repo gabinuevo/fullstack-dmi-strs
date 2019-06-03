@@ -25,10 +25,4 @@ const makeSelectError = () =>
     globalState => globalState.error,
   );
 
-
-
-export {
-  makeSelectStrings,
-  makeSelectLoading,
-  makeSelectError
-};
+export { makeSelectStrings, makeSelectLoading, makeSelectError };

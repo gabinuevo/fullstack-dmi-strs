@@ -2,18 +2,17 @@
  * Gets all strings in database.
  */
 
-import { call, put, select, takeLatest } from 'redux-saga/effects';
+import request from 'utils/request';
+import { call, put, takeLatest } from 'redux-saga/effects';
+
 import { LOAD_STRINGS } from './constants';
 import { stringsLoaded, stringLoadingError } from './actions';
-
-import request from 'utils/request';
 
 /**
  * Database strings request/response handler
  */
 export function* getStrings() {
   const requestURL = `http://localhost:3001`;
-  
   try {
     // Call our request helper (see 'utils/request')
     const strings = yield call(request, requestURL);

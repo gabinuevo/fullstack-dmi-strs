@@ -10,12 +10,12 @@ export const scope = 'boilerplate.containers.StringsPage';
 export default defineMessages({
   startProjectHeader: {
     id: `${scope}.start_project.header`,
-    defaultMessage: 'A collection of thoughts and messages from people like you',
+    defaultMessage:
+      'A collection of thoughts and messages from people like you',
   },
   startProjectMessage: {
     id: `${scope}.start_project.message`,
-    defaultMessage:
-      '-- a time capsule for the 21st century',
+    defaultMessage: '-- a time capsule for the 21st century',
   },
   header: {
     id: `${scope}.header`,

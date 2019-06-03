@@ -3,7 +3,13 @@
  */
 
 import produce from 'immer';
-import { CHANGE_INPUT, ADD_STRING, ADD_STRING_SUCCESS, ADD_STRING_ERROR, REMOVE_STRING_MESSAGE } from './constants';
+import {
+  CHANGE_INPUT,
+  ADD_STRING,
+  ADD_STRING_SUCCESS,
+  ADD_STRING_ERROR,
+  REMOVE_STRING_MESSAGE,
+} from './constants';
 
 // The initial state of the AddStringPage
 export const initialState = {
