@@ -8,15 +8,6 @@ import { defineMessages } from 'react-intl';
 export const scope = 'boilerplate.containers.HomePage';
 
 export default defineMessages({
-  startProjectHeader: {
-    id: `${scope}.start_project.header`,
-    defaultMessage: 'A collection of thoughts and messages from people like you',
-  },
-  startProjectMessage: {
-    id: `${scope}.start_project.message`,
-    defaultMessage:
-      '-- a time capsule for the 21st century',
-  },
   trymeHeader: {
     id: `${scope}.tryme.header`,
     defaultMessage: 'Try me!',

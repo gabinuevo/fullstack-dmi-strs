@@ -59,14 +59,14 @@ export function HomePage({
         />
       </Helmet>
       <div>
-        <CenteredSection>
+        {/* <CenteredSection>
           <H2>
             <FormattedMessage {...messages.startProjectHeader} />
           </H2>
           <p>
             <FormattedMessage {...messages.startProjectMessage} />
           </p>
-        </CenteredSection>
+        </CenteredSection> */}
         <Section>
           <H2>
             <FormattedMessage {...messages.trymeHeader} />

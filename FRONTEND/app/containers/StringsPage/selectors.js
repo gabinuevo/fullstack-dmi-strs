@@ -5,7 +5,7 @@
 import { createSelector } from 'reselect';
 import { initialState } from './reducer';
 
-const selectMessages = state => state.featurePage || initialState;
+const selectMessages = state => state.stringsPage || initialState;
 
 const makeSelectStrings = () =>
   createSelector(

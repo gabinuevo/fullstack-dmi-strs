@@ -1,5 +1,5 @@
 /*
- * FeaturePage
+ * StringsPage
  *
  * List all the features
  */
@@ -25,14 +25,15 @@ import { loadStrings } from './actions';
 import H1 from 'components/H1';
 import Button from 'components/Button';
 import messages from './messages';
+import CenteredSection from '../HomePage/CenteredSection';
 import List from './List';
 import ListItem from './ListItem';
 import reducer from './reducer';
 import saga from './saga';
 
-const key = 'featurePage';
+const key = 'stringsPage';
 
-export function FeaturePage({
+export function StringsPage({
   error,
   sendGetReq,
   strings
@@ -60,6 +61,14 @@ export function FeaturePage({
           content="Existing messages in DMI Connect"
         />
       </Helmet>
+      <CenteredSection>
+        <H1>
+          <FormattedMessage {...messages.startProjectHeader} />
+        </H1>
+        <p>
+          <FormattedMessage {...messages.startProjectMessage} />
+        </p>
+      </CenteredSection>
       <Button handleRoute={sendGetReq}>Refresh messages</Button>
       <H1>
         <FormattedMessage {...messages.header} />
@@ -72,7 +81,7 @@ export function FeaturePage({
 }
 
 
-FeaturePage.propTypes = {
+StringsPage.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   strings: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
@@ -102,4 +111,4 @@ const withConnect = connect(
 export default compose(
   withConnect,
   memo,
-)(FeaturePage);
+)(StringsPage);
