@@ -14,11 +14,14 @@ import { createStructuredSelector } from 'reselect';
 
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
-// import {
-//   makePostReq,
-//   makePostReqSuc,
-//   makePostReqErr,
-// } from './selectors';
+
+
+import {
+  makeSelectLoading,
+  makeSelectError,
+} from './selectors';
+import { sendString } from './actions';
+
 import H2 from 'components/H2';
 import AtPrefix from './AtPrefix';
 import CenteredSection from './CenteredSection';
@@ -33,19 +36,16 @@ import saga from './saga';
 const key = 'home';
 
 export function HomePage({
-  loading,
-  error,
-  strings,
   input,
   onSubmitForm,
   onChangeInput,
+  error
 }) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
   useEffect(() => {
-    // When initial state input is not null, submit the form to load strings
-    if (input && input.trim().length > 0) onSubmitForm();
+    if (input && input.trim().length > 0) onSubmitForm(input);
   }, []);
 
   return (
@@ -94,16 +94,13 @@ export function HomePage({
 HomePage.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  strings: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   onSubmitForm: PropTypes.func,
-
   onChangeInput: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
-  // strings: makeSelectStrings(),
-  // loading: makeSelectLoading(),
-  // error: makeSelectError(),
+  loading: makeSelectLoading(),
+  error: makeSelectError(),
 });
 
 export function mapDispatchToProps(dispatch) {
@@ -111,7 +108,7 @@ export function mapDispatchToProps(dispatch) {
     onChangeInput: evt => dispatch(changeInput(evt.target.value)),
     onSubmitForm: evt => {
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-      // dispatch(loadStrings());
+      dispatch(sendString(document.getElementById("string-input").value));
     },
   };
 }

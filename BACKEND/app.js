@@ -37,6 +37,7 @@ app.get('/', async function (req, res, next) {
 app.post('/', async function (req, res, next) {
   try {
     const { input } = req.body;
+    console.log("%%%%%%%%%%", req.body)
     const result = await StringApi.addString(input);
     return res.send({ result });
   } catch (err) {

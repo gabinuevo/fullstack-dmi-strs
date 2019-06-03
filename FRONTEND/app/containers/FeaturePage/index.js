@@ -41,9 +41,7 @@ export function FeaturePage({
   useInjectSaga({ key, saga });
 
   useEffect(() => {
-    if (strings.length === 0) {
-      sendGetReq()
-    }
+    if (strings.length === 0) sendGetReq()
   }, []);
 
   let stringList = !strings
