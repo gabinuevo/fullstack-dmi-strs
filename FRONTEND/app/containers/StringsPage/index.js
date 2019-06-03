@@ -1,7 +1,7 @@
 /*
  * StringsPage
  *
- * List all the features
+ * This is the first thing users see of our App, at the '/' route
  */
 import React, { useEffect, memo } from 'react';
 import PropTypes from 'prop-types';
@@ -25,7 +25,7 @@ import { loadStrings } from './actions';
 import H1 from 'components/H1';
 import Button from 'components/Button';
 import messages from './messages';
-import CenteredSection from '../HomePage/CenteredSection';
+import CenteredSection from './CenteredSection';
 import List from './List';
 import ListItem from './ListItem';
 import reducer from './reducer';

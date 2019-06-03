@@ -1,5 +1,5 @@
 /*
- * Reducer for feature page.
+ * Reducer for StringsPage.
  */
 
 import produce from 'immer';
@@ -10,7 +10,7 @@ export const initialState = {
 };
 
 /* eslint-disable default-case, no-param-reassign */
-const featPageReducer = (state = initialState, action) =>
+const strPageReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
       case LOAD_STRINGS:
@@ -28,6 +28,6 @@ const featPageReducer = (state = initialState, action) =>
     }
   });
 
-export default featPageReducer;
+export default strPageReducer;
 
 

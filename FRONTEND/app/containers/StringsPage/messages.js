@@ -1,11 +1,11 @@
 /*
- * FeaturePage Messages
+ * StringsPage Messages
  *
- * This contains all the text for the FeaturePage component.
+ * This contains all the text for the StringsPage component.
  */
 import { defineMessages } from 'react-intl';
 
-export const scope = 'boilerplate.containers.FeaturePage';
+export const scope = 'boilerplate.containers.StringsPage';
 
 export default defineMessages({
   startProjectHeader: {

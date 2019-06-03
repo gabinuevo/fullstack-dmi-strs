@@ -1,19 +1,19 @@
 /*
- * HomePage Messages
+ * addStringPage Messages
  *
- * This contains all the text for the HomePage component.
+ * This contains all the text for the addStringPage component.
  */
 import { defineMessages } from 'react-intl';
 
 export const scope = 'boilerplate.components.Header';
 
 export default defineMessages({
-  home: {
-    id: `${scope}.home`,
-    defaultMessage: 'Home',
+  addStringPage: {
+    id: `${scope}.addStringPage`,
+    defaultMessage: 'Add a message',
   },
-  features: {
-    id: `${scope}.features`,
-    defaultMessage: 'Features',
+  stringsPage: {
+    id: `${scope}.stringsPage`,
+    defaultMessage: 'Current Messages',
   },
 });

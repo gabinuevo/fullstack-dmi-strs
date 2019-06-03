@@ -1,14 +1,8 @@
 /*
- * Home Actions
- * To add a new Action:
- * 1) Import your constant
- * 2) Add a function like this:
- *    export function yourAction(var) {
- *        return { type: YOUR_ACTION_CONSTANT, var: var }
- *    }
+ * AddStringPage Actions
  */
 
-import { CHANGE_INPUT, ADD_STRING, ADD_STRING_SUCCESS, ADD_STRING_ERROR } from './constants';
+import { CHANGE_INPUT, ADD_STRING, ADD_STRING_SUCCESS, ADD_STRING_ERROR, REMOVE_STRING_MESSAGE } from './constants';
 
 /**
  * Changes the input field of the form
@@ -26,7 +20,7 @@ export function changeInput(input) {
 
 
 /**
- * Changes the input field of the form
+ * Sends new string to the database
  *
  * @param  {string} input The new text of the input field
  *
@@ -40,7 +34,7 @@ export function sendString(input) {
 }
 
 /**
- * Changes the input field of the form
+ * Confirms that string was successfully added to DB.
  *
  * @param  {object} stringData the string + id from server.
  *
@@ -54,7 +48,7 @@ export function sentString(stringData) {
 }
 
 /**
- * Changes the input field of the form
+ * Informs user if attempt to add string to DB is unsuccessful.
  *
  * @param  {object} errData the error from server.
  *
@@ -64,5 +58,16 @@ export function sentStringErr(errData) {
   return {
     type: ADD_STRING_ERROR,
     data: errData,
+  };
+}
+
+/**
+ * Removes success message from state.
+ *
+ * @return {object} An action object with a type of REMOVE_STRING_MESSAGE
+ */
+export function removeStrMsg() {
+  return {
+    type: REMOVE_STRING_MESSAGE
   };
 }

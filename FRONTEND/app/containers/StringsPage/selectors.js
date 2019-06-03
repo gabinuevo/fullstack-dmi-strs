@@ -1,5 +1,5 @@
 /**
- * The Feature Page state selectors
+ * The StringPage state selectors
  */
 
 import { createSelector } from 'reselect';

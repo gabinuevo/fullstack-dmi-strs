@@ -1,8 +1,6 @@
 /**
  *
- * App
- *
- * This component is the skeleton around the actual pages, and should only
+ * App Component. Holds all routes.
  */
 
 import React from 'react';
@@ -10,7 +8,7 @@ import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 
-import HomePage from 'containers/HomePage/Loadable';
+import AddStringPage from 'containers/AddStringPage/Loadable';
 import StringsPage from 'containers/StringsPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
@@ -38,7 +36,7 @@ export default function App() {
       </Helmet>
       <Header />
       <Switch>
-        <Route exact path="/addMessage" component={HomePage} />
+        <Route exact path="/addMessage" component={AddStringPage} />
         <Route path="/" component={StringsPage} />
         <Route path="" component={NotFoundPage} />
       </Switch>

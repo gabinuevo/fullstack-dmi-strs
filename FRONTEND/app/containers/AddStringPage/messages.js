@@ -1,11 +1,11 @@
 /*
- * HomePage Messages
+ * AddStringPage Messages
  *
- * This contains all the text for the HomePage component.
+ * This contains all the text for the AddStringPage component.
  */
 import { defineMessages } from 'react-intl';
 
-export const scope = 'boilerplate.containers.HomePage';
+export const scope = 'boilerplate.containers.addStringPage';
 
 export default defineMessages({
   trymeHeader: {
@@ -16,12 +16,12 @@ export default defineMessages({
     id: `${scope}.tryme.message`,
     defaultMessage: 'Input: ',
   },
-  trymeAtPrefix: {
-    id: `${scope}.tryme.atPrefix`,
-    defaultMessage: ' ',
-  },
   errorMessage: {
-    id: `${scope}.tryme.atPrefix`,
+    id: `${scope}.tryme.errorMessage`,
     defaultMessage: 'Something has gone wrong. Please try again later.',
+  },
+  successMessage: {
+    id: `${scope}.tryme.successMessage`,
+    defaultMessage: 'Message successfully saved!',
   },
 });

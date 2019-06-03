@@ -1,10 +1,10 @@
 /*
- * HomePage
+ * AddStringPage
  *
- * This is the first thing users see of our App, at the '/' route
+ * This page allows users to send a new string to the DB
  */
 
-import React, { useEffect, useState, memo } from 'react';
+import React, { useEffect, memo } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
@@ -19,13 +19,14 @@ import { useInjectSaga } from 'utils/injectSaga';
 import {
   makeSelectLoading,
   makeSelectError,
+  makeSelectMsg,
 } from './selectors';
-import { sendString } from './actions';
+import { sendString, removeStrMsg } from './actions';
 
 import H2 from 'components/H2';
 import Button from 'components/Button';
 import ErrorMessage from './ErrorMessage';
-import CenteredSection from './CenteredSection';
+import SuccessMessage from './SuccessMessage';
 import Form from './Form';
 import Input from './Input';
 import Section from './Section';
@@ -34,13 +35,15 @@ import { changeInput } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 
-const key = 'home';
+const key = 'addStringPage';
 
-export function HomePage({
+export function AddStringPage({
   input,
+  error,
+  message,
   onSubmitForm,
   onChangeInput,
-  error
+  removeMessage,
 }) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
@@ -49,32 +52,32 @@ export function HomePage({
     if (input && input.trim().length > 0) onSubmitForm(input);
   }, []);
 
+  if (message) {
+    window.setTimeout(() => removeMessage(), 5000 )
+  }
+
   return (
     <article>
       <Helmet>
-        <title>Home Page</title>
+        <title>Add a Message</title>
         <meta
           name="description"
           content="Built with React.js Boilerplate"
         />
       </Helmet>
       <div>
-        {/* <CenteredSection>
-          <H2>
-            <FormattedMessage {...messages.startProjectHeader} />
-          </H2>
-          <p>
-            <FormattedMessage {...messages.startProjectMessage} />
-          </p>
-        </CenteredSection> */}
         <Section>
           <H2>
             <FormattedMessage {...messages.trymeHeader} />
           </H2>
+          <p>
+            {message && <SuccessMessage>
+              <FormattedMessage {...messages.successMessage} />
+            </SuccessMessage>}
+          </p>
           <Form onSubmit={onSubmitForm}>
             <label htmlFor="input">
               <FormattedMessage {...messages.trymeMessage} />
-              <FormattedMessage {...messages.trymeAtPrefix} />
               <Input
                 id="string-input"
                 type="text"
@@ -87,8 +90,8 @@ export function HomePage({
           </Form>
           <p>
             {error && <ErrorMessage>
-              <FormattedMessage {...messages.errorMessage} />
-            </ErrorMessage>}
+                        <FormattedMessage {...messages.errorMessage} />
+                      </ErrorMessage>}
           </p>
         </Section>
       </div>
@@ -96,7 +99,7 @@ export function HomePage({
   );
 }
 
-HomePage.propTypes = {
+AddStringPage.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   onSubmitForm: PropTypes.func,
@@ -106,6 +109,7 @@ HomePage.propTypes = {
 const mapStateToProps = createStructuredSelector({
   loading: makeSelectLoading(),
   error: makeSelectError(),
+  message: makeSelectMsg(),
 });
 
 export function mapDispatchToProps(dispatch) {
@@ -116,6 +120,7 @@ export function mapDispatchToProps(dispatch) {
       dispatch(sendString(document.getElementById("string-input").value));
       document.getElementById("string-input").value = '';
     },
+    removeMessage: () => dispatch(removeStrMsg()),
   };
 }
 
@@ -127,4 +132,4 @@ const withConnect = connect(
 export default compose(
   withConnect,
   memo,
-)(HomePage);
+)(AddStringPage);

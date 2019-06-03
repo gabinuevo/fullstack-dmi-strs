@@ -1,5 +1,5 @@
 /*
- * Feature Page Actions
+ *  StringsPage Actions
  */
 
 import { LOAD_STRINGS, LOAD_STRINGS_SUCCESS, LOAD_STRINGS_ERROR } from './constants';

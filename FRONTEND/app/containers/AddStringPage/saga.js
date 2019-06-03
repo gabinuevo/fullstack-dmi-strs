@@ -1,8 +1,4 @@
-/**
- * Gets all strings in database.
- */
-
-import { call, put, select, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 import { ADD_STRING } from './constants';
 import { sentString, sentStringErr } from './actions';
 
