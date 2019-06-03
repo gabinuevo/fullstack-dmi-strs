@@ -1,6 +1,6 @@
-import { css } from 'styled-components';
+import styled from 'styled-components';
 
-const buttonStyles = css`
+const AddButtonStyle = styled.button`
   display: inline-block;
   box-sizing: border-box;
   padding: 0.25em 2em;
@@ -14,9 +14,13 @@ const buttonStyles = css`
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: bold;
   font-size: 16px;
-  border: 2px solid #506D59;
-  background: #506D59;
-  color: #fff;
+  border: 2px solid black;
+  color: black;
+
+  &:active {
+    background: #41addd;
+    color: #fff;
+  }
 `;
 
-export default buttonStyles;
+export default AddButtonStyle;

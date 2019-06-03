@@ -24,6 +24,7 @@ import { sendString } from './actions';
 
 import H2 from 'components/H2';
 import Button from 'components/Button';
+import AddButtonStyle from './AddButtonStyle'
 import ErrorMessage from './ErrorMessage';
 import CenteredSection from './CenteredSection';
 import Form from './Form';
@@ -83,12 +84,14 @@ export function HomePage({
                 onChange={onChangeInput}
               />
             </label>
-            <Button handleRoute={onSubmitForm}>Submit Message</Button>
+            {/* <AddButtonStyle> */}
+              <Button handleRoute={onSubmitForm}>Submit Message</Button>
+            {/* </AddButtonStyle> */}
           </Form>
           <p>
             {error && <ErrorMessage>
-                          <FormattedMessage {...messages.errorMessage} /> 
-                        </ErrorMessage>}
+              <FormattedMessage {...messages.errorMessage} />
+            </ErrorMessage>}
           </p>
         </Section>
       </div>
