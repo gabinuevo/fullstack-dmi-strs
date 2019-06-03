@@ -4,7 +4,7 @@
  * This is the first thing users see of our App, at the '/' route
  */
 
-import React, { useEffect, memo } from 'react';
+import React, { useEffect, useState, memo } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
@@ -23,7 +23,8 @@ import {
 import { sendString } from './actions';
 
 import H2 from 'components/H2';
-import AtPrefix from './AtPrefix';
+import Button from 'components/Button';
+import ErrorMessage from './ErrorMessage';
 import CenteredSection from './CenteredSection';
 import Form from './Form';
 import Input from './Input';
@@ -73,9 +74,7 @@ export function HomePage({
           <Form onSubmit={onSubmitForm}>
             <label htmlFor="input">
               <FormattedMessage {...messages.trymeMessage} />
-              <AtPrefix>
-                <FormattedMessage {...messages.trymeAtPrefix} />
-              </AtPrefix>
+              <FormattedMessage {...messages.trymeAtPrefix} />
               <Input
                 id="string-input"
                 type="text"
@@ -84,7 +83,13 @@ export function HomePage({
                 onChange={onChangeInput}
               />
             </label>
+            <Button handleRoute={onSubmitForm}>Submit Message</Button>
           </Form>
+          <p>
+            {error && <ErrorMessage>
+                          <FormattedMessage {...messages.errorMessage} /> 
+                        </ErrorMessage>}
+          </p>
         </Section>
       </div>
     </article>
@@ -109,6 +114,7 @@ export function mapDispatchToProps(dispatch) {
     onSubmitForm: evt => {
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
       dispatch(sendString(document.getElementById("string-input").value));
+      document.getElementById("string-input").value = '';
     },
   };
 }

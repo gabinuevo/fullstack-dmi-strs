@@ -34,7 +34,7 @@ const homeReducer = (state = initialState, action) =>
         break;
       case ADD_STRING_ERROR:
         const errData = action.data
-        draft.featurePage.error = errData;
+        draft.error = errData;
         // debugger;
         break;
     }

@@ -23,6 +23,7 @@ import {
 import { loadStrings } from './actions';
 
 import H1 from 'components/H1';
+import Button from 'components/Button';
 import messages from './messages';
 import List from './List';
 import ListItem from './ListItem';
@@ -59,6 +60,7 @@ export function FeaturePage({
           content="Existing messages in DMI Connect"
         />
       </Helmet>
+      <Button handleRoute={sendGetReq}>Refresh messages</Button>
       <H1>
         <FormattedMessage {...messages.header} />
       </H1>

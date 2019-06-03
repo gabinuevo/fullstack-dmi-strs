@@ -23,7 +23,6 @@ app.use(cors({
 app.get('/', async function (req, res, next) {
   try {
     const result = await StringApi.getAll();
-    console.log("BACKEND PINGED")
     return res.send({ result });
   } catch (err) {
     return next(err);
@@ -37,7 +36,6 @@ app.get('/', async function (req, res, next) {
 app.post('/', async function (req, res, next) {
   try {
     const { input } = req.body;
-    console.log("%%%%%%%%%%", req.body)
     const result = await StringApi.addString(input);
     return res.send({ result });
   } catch (err) {

@@ -29,4 +29,8 @@ export default defineMessages({
     id: `${scope}.tryme.atPrefix`,
     defaultMessage: ' ',
   },
+  errorMessage: {
+    id: `${scope}.tryme.atPrefix`,
+    defaultMessage: 'Something has gone wrong. Please try again later.',
+  },
 });
