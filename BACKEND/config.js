@@ -18,7 +18,7 @@ let DB_URI;
 if (process.env.NODE_ENV === "test") {
   DB_URI = "dmi-connect-test";
 } else {
-  DB_URI = process.env.DATABASE_URL || "dmiConnect";
+  DB_URI = process.env.DATABASE_URL || "connectdmi";
 }
 
 
