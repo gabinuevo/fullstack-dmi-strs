@@ -9,7 +9,7 @@ exports[`<App /> should render and match the snapshot 1`] = `
     titleTemplate="%s - React.js Boilerplate"
   >
     <meta
-      content="A React.js Boilerplate application"
+      content="Built with  React.js Boilerplate"
       name="description"
     />
   </HelmetWrapper>
@@ -18,11 +18,11 @@ exports[`<App /> should render and match the snapshot 1`] = `
     <Route
       component={[Function]}
       exact={true}
-      path="/"
+      path="/addMessage"
     />
     <Route
       component={[Function]}
-      path="/features"
+      path="/"
     />
     <Route
       component={[Function]}

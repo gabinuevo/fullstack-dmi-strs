@@ -1,19 +1,28 @@
+/**
+ * Tests for StringPage index.js
+ */
+import expect from 'expect';
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import React from 'react';
-import { render } from 'react-testing-library';
-import { IntlProvider } from 'react-intl';
+import { createMockStore } from 'redux-test-utils';
+import shallowWithStore from './shallowWithStore';
 
-import StringsPage from '../index';
+import { StringsPage } from '../index';
 
-describe('<StringsPage />', () => {
-  it('should render its heading', () => {
-    const {
-      container: { firstChild },
-    } = render(
-      <IntlProvider locale="en">
-        <StringsPage />
-      </IntlProvider>,
-    );
+Enzyme.configure({ adapter: new Adapter() });
 
-    expect(firstChild).toMatchSnapshot();
+describe('StringsPage', () => {
+  it('should render successfully if string is not provided by store', () => {
+    const testState = {
+      stringsPage: {
+        strings: [],
+        loading: true,
+        error: false,
+      },
+    };
+    const store = createMockStore(testState);
+    const component = shallowWithStore(<StringsPage />, store);
+    expect(typeof component).toEqual('object');
   });
 });

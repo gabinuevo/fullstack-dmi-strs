@@ -5,6 +5,7 @@ exports[`<Img /> should match the snapshot 1`] = `
   width: 100%;
   margin: 0 auto;
   display: block;
+  border-radius: 3px;
 }
 
 <img

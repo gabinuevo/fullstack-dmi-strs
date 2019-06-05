@@ -10,6 +10,8 @@ import {
 } from './constants';
 
 export const initialState = {
+  loading: false,
+  error: false,
   strings: [],
 };
 
@@ -20,9 +22,10 @@ const strPageReducer = (state = initialState, action) =>
       case LOAD_STRINGS:
         draft.loading = true;
         draft.error = false;
-        draft.strings = action.result;
         break;
       case LOAD_STRINGS_SUCCESS:
+        draft.loading = false;
+        draft.error = false;
         draft.strings = action.strings.result;
         break;
       case LOAD_STRINGS_ERROR:

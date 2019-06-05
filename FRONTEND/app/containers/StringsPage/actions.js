@@ -29,7 +29,7 @@ export function loadStrings() {
 export function stringsLoaded(strings) {
   return {
     type: LOAD_STRINGS_SUCCESS,
-    strings,
+    strings: strings || [], // purely for testing purposes
   };
 }
 

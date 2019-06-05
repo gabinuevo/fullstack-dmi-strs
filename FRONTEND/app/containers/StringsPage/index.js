@@ -57,7 +57,9 @@ export function StringsPage({ error, sendGetReq, strings }) {
           <FormattedMessage {...messages.startProjectMessage} />
         </p>
       </CenteredSection>
-      <Button handleRoute={sendGetReq}>Refresh messages</Button>
+      <Button id="StringsPage-Button" handleRoute={sendGetReq}>
+        Refresh messages
+      </Button>
       <H1>
         <FormattedMessage {...messages.header} />
       </H1>
