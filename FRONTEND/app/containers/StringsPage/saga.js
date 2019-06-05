@@ -11,7 +11,7 @@ import { stringsLoaded, stringLoadingError } from './actions';
 /**
  * Database strings request/response handler
  */
-export function* getStrings(url) {
+export function* getStrings(_, url) {
   const requestURL = url || `http://localhost:3001`;
   try {
     // Call our request helper (see 'utils/request')

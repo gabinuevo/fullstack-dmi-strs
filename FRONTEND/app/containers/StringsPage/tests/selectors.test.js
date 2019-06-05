@@ -1,5 +1,8 @@
 /**
  * Tests for StringPage selectors
+ * NOTE: Ran out of time and had issues w/ getting the selector tests
+ * to work while not compromising functionality. If I had more time,
+ * I would do this.
  */
 
 import {

@@ -22,6 +22,7 @@ const strPageReducer = (state = initialState, action) =>
       case LOAD_STRINGS:
         draft.loading = true;
         draft.error = false;
+        // debugger
         break;
       case LOAD_STRINGS_SUCCESS:
         draft.loading = false;

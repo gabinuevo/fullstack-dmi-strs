@@ -1,7 +1,7 @@
 /** custom error hamdler 
  * adds a status when we make an instance of it.
  *
- *  TODO: The error-handling middleware will return this.
+ *  The error-handling middleware will be handled by this.
  */
 
 class ExpressError extends Error {
